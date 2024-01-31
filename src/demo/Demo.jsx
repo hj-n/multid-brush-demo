@@ -33,7 +33,10 @@ const Demo = (props) => {
 				setWarning("Error while loading data!!")
 			}
 			
-			const multidbrushing = new MultiDBrushing(preprocessed, brushingsName, canvasRef.current, CONSTANTS.size);
+			const multidbrushing = new MultiDBrushing(
+				preprocessed, brushingsName, canvasRef.current, 
+				CONSTANTS.SIZE, CONSTANTS.POINTSIZE, "dot"
+			);
 
 		})();
 	});
