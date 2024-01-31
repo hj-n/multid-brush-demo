@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
+
+$thin: 100;
+$regular: 300;
+$bold: 600;
+
+$smallFontSize: 1rem;
+$bigFontSize: 2.1 * $smallFontSize;
+
+$pink: #ffb3bf;
+$darkpink: #b37d8b;
+$lightpink: #ffd9e3;
+$lightlightpink: #ffecf1;
+$white: #ffffff;
+$black: #000000;
+
+// global styles
+body {
+	font-family: 'Poppins', sans-serif;
+	font-weight: $regular;
+	font-size: $smallFontSize;
+	margin: 0px;
+}
+
+.mainTitle {
+	font-size: $bigFontSize;
+	font-weight: $bold;
+	padding: 10px 20px;
+	margin: 0px;
+	background-color: $darkpink;
+	color: $lightlightpink
+}
+
