@@ -7,10 +7,10 @@ $bold: 600;
 $smallFontSize: 1rem;
 $bigFontSize: 2.1 * $smallFontSize;
 
-$pink: #ffb3bf;
-$darkpink: #b37d8b;
-$lightpink: #ffd9e3;
-$lightlightpink: #ffecf1;
+$normal: #ffb3bf;
+$dark: #b37d8b;
+$light: #ffd9e3;
+$lightlight: #ffecf1;
 $white: #ffffff;
 $black: #000000;
 
@@ -27,8 +27,8 @@ body {
 	font-weight: $bold;
 	padding: 10px 20px;
 	margin: 0px;
-	background-color: $darkpink;
-	color: $lightlightpink
+	background-color: $dark;
+	color: $lightlight;
 }
 
 .mainCanvas {
@@ -41,11 +41,29 @@ body {
 
 .dropdown {
 	background-color: $white;
-	color: $darkpink;
+	color: $dark;
 	font-weight: $bold;
-	padding: 10px 20px;
-	border: 1.5px solid $darkpink;
+	padding: 10px 10px;
+	border: 1.5px solid $dark;
 	border-radius: 4px;
-	margin: 10px 0px;
 	// margin-bottom: 0px;
+}
+
+.optionsContainer {
+	display: flex;
+
+	.singleOptionContainer {
+		display: flex;
+
+		h3 {
+			color: $dark;
+			margin: 0px;
+			padding: 5px 0px;
+			margin-right: 10px;
+			
+		}
+		margin-bottom: 10px;
+		margin-right: 20px;
+
+	}
 }

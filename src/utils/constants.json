@@ -1,3 +1,9 @@
 {
-	"SIZE": 700
+	"SIZE": 700,
+	"BRUSHINGS" : {
+		"dab": "Distortion-Aware Brushing",
+		"sb": "Similarity Brushing",
+		"mbb": "M-Ball Brushing",
+		"ddb": "Data-Driven Brushing"
+	}
 }
