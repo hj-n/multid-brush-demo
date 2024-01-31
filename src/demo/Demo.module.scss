@@ -1,2 +1,11 @@
 @import "../globalStyle.scss";
 
+.warningContainer {
+	color: red;
+	font-weight: $bold;
+
+	p {
+		margin: 0px 2px;
+		margin-bottom: 10px;
+	}
+}

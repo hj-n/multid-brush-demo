@@ -31,3 +31,21 @@ body {
 	color: $lightlightpink
 }
 
+.mainCanvas {
+	border: 1px solid $black;
+}
+
+.container {
+	padding: 10px 20px;
+}
+
+.dropdown {
+	background-color: $white;
+	color: $darkpink;
+	font-weight: $bold;
+	padding: 10px 20px;
+	border: 1.5px solid $darkpink;
+	border-radius: 4px;
+	margin: 10px 0px;
+	// margin-bottom: 0px;
+}
