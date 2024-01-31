@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import styles from './Demo.module.scss';
 import CONSTANTS from "../utils/constants";
 import { readLocalJsonFromPublic } from '../utils/helpers';
+import MultiDBrushing from "multid-brush";
 
 
 const Demo = (props) => {
@@ -14,7 +15,6 @@ const Demo = (props) => {
 	const brushingsId = Object.keys(CONSTANTS.BRUSHINGS);
 	const brushingsName = brushingsId.map((id) => CONSTANTS.BRUSHINGS[id]);
 
-
 	const exampleDatasets = {
 		"FashionMNIST-UMAP": "data/fmnist_small_umap_preprocessed.json",
 		"FashionMNIST-PCA": "data/fmnist_small_pca_preprocessed.json",
@@ -24,12 +24,16 @@ const Demo = (props) => {
 
 	useEffect(() => {
 		(async () => {
+			let preprocessed;
 			try {
-				const data = await readLocalJsonFromPublic(exampleDatasets[exampleDataId]);
+				preprocessed = await readLocalJsonFromPublic(exampleDatasets[exampleDataId]);
 			}
 			catch (error) {
+				console.log(error)
 				setWarning("Error while loading data!!")
 			}
+			
+			const multidbrushing = new MultiDBrushing(preprocessed, brushingsName, canvasRef.current, CONSTANTS.size);
 
 		})();
 	});
