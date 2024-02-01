@@ -20,6 +20,22 @@ const Demo = (props) => {
 		"FashionMNIST-PCA": "data/fmnist_small_pca_preprocessed.json",
 	}
 
+	// for FASHION-MNIST RENDERING
+	// const pointRenderingStyle = {
+	// 	"style": "monochrome",
+	// 	"inversed": true,
+	// 	"width": CONSTANTS.POINTSIZE,
+	// 	"height": CONSTANTS.POINTSIZE,
+	// 	"pixelWidth": 28,
+	// 	"pixelHeight": 28,
+	// 	"removeBackground": true,
+	// }
+
+	const pointRenderingStyle = {
+		"style": "dot",
+		"size": CONSTANTS.POINTSIZE
+	}
+
 
 
 	useEffect(() => {
@@ -34,8 +50,7 @@ const Demo = (props) => {
 			}
 			
 			const multidbrushing = new MultiDBrushing(
-				preprocessed, brushingsName, canvasRef.current, 
-				CONSTANTS.SIZE, CONSTANTS.POINTSIZE, "dot"
+				preprocessed, brushingsName, canvasRef.current, CONSTANTS.SIZE, pointRenderingStyle
 			);
 
 		})();

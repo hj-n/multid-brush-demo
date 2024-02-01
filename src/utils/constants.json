@@ -1,6 +1,6 @@
 {
 	"SIZE": 1400,
-	"POINTSIZE": 15,
+	"POINTSIZE": 40,
 	"BRUSHINGS" : {
 		"dab": "Distortion-Aware Brushing",
 		"sb": "Similarity Brushing",
