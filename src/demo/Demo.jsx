@@ -36,6 +36,11 @@ const Demo = (props) => {
 		"size": CONSTANTS.POINTSIZE
 	}
 
+	const techniqueStyle = {
+		"technique": "dab",
+		"painterColor": "green",
+		"initialPainterRadius": 50,
+	}
 
 
 	useEffect(() => {
@@ -50,7 +55,8 @@ const Demo = (props) => {
 			}
 			
 			const multidbrushing = new MultiDBrushing(
-				preprocessed, brushingsName, canvasRef.current, CONSTANTS.SIZE, pointRenderingStyle
+				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
+				pointRenderingStyle, techniqueStyle
 			);
 
 		})();
@@ -99,7 +105,12 @@ const Demo = (props) => {
 						{warning !== "" && <p className={styles.warning}>{warning}</p>}
 					</div>
 					  {warning === "" && 
-							<canvas className={styles.mainCanvas} ref={canvasRef} width={width} height={height} />
+							<canvas 
+								className={styles.mainCanvas} 
+								ref={canvasRef} 
+								width={width} height={height} 
+								style={{width: width / 2, height: height / 2}}
+							/>
 						}
 
 				</div>
