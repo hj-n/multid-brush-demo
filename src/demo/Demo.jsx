@@ -36,11 +36,12 @@ const Demo = (props) => {
 		"size": CONSTANTS.POINTSIZE
 	}
 
-	const techniqueStyle = {
-		"technique": "dab",
-		"painterColor": "green",
-		"initialPainterRadius": 50,
-	}
+	// const techniqueStyle = {
+	// 	"technique": "dab",
+	// 	"painterColor": "green",
+	// 	"initialPainterRadius": 50,
+	// 	"initialRelocationThreshold": 600, // in ms
+	// }
 
 
 	useEffect(() => {
@@ -56,7 +57,7 @@ const Demo = (props) => {
 			
 			const multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
-				pointRenderingStyle, techniqueStyle
+				pointRenderingStyle,
 			);
 
 		})();
