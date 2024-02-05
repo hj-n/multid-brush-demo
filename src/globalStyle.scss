@@ -20,6 +20,9 @@ body {
 	font-weight: $regular;
 	font-size: $smallFontSize;
 	margin: 0px;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 html, body {
