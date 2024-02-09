@@ -21,20 +21,19 @@ const Demo = (props) => {
 	}
 
 	// for FASHION-MNIST RENDERING
-	// const pointRenderingStyle = {
-	// 	"style": "monochrome",
-	// 	"inversed": true,
-	// 	"width": CONSTANTS.POINTSIZE,
-	// 	"height": CONSTANTS.POINTSIZE,
-	// 	"pixelWidth": 28,
-	// 	"pixelHeight": 28,
-	// 	"removeBackground": true,
-	// }
-
 	const pointRenderingStyle = {
-		"style": "dot",
-		"size": CONSTANTS.POINTSIZE
+		"style": "monochrome",
+		"size": CONSTANTS.POINTSIZE * 2.5,
+		"inversed": true,
+		"pixelWidth": 28,
+		"pixelHeight": 28,
+		"removeBackground": true,
 	}
+
+	// const pointRenderingStyle = {
+	// 	"style": "dot",
+	// 	"size": CONSTANTS.POINTSIZE
+	// }
 
 	// const techniqueStyle = {
 	// 	"technique": "dab",
@@ -110,7 +109,7 @@ const Demo = (props) => {
 								className={styles.mainCanvas} 
 								ref={canvasRef} 
 								width={width} height={height} 
-								style={{width: width / 2, height: height / 2}}
+								style={{width: width, height: height}}
 							/>
 						}
 
