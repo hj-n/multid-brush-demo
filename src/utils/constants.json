@@ -1,5 +1,5 @@
 {
-	"SIZE": 1200,
+	"SIZE": 1000,
 	"POINTSIZE": 10,
 	"BRUSHINGS" : {
 		"dab": "Distortion-Aware Brushing",

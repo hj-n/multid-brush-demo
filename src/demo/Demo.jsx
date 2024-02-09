@@ -18,6 +18,8 @@ const Demo = (props) => {
 	const exampleDatasets = {
 		"FashionMNIST-UMAP": "data/fmnist_small_umap_preprocessed.json",
 		"FashionMNIST-PCA": "data/fmnist_small_pca_preprocessed.json",
+		"Wine-PCA": "data/wine_pca_preprocessed.json",
+		"MNIST-PCA": "data/mnist_small_pca_preprocessed.json",
 	}
 
 	// for FASHION-MNIST RENDERING
@@ -42,6 +44,7 @@ const Demo = (props) => {
 	// 	"initialRelocationThreshold": 600, // in ms
 	// }
 
+	let multidbrushing = null;
 
 	useEffect(() => {
 		(async () => {
@@ -53,14 +56,16 @@ const Demo = (props) => {
 				console.log(error)
 				setWarning("Error while loading data!!")
 			}
-			
-			const multidbrushing = new MultiDBrushing(
+			multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
 				pointRenderingStyle,
 			);
-
 		})();
-	});
+
+		return () => {
+			multidbrushing.unMount();
+		}
+	}, [exampleDataId]);
 
 	// Load the data from the "data" folder in public
 
