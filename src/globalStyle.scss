@@ -58,6 +58,25 @@ html, body {
 	// margin-bottom: 0px;
 }
 
+.clickButton {
+	background-color: $lightlight;
+	color: $dark;
+	font-weight: $bold;
+	padding: 10px 10px;
+	border: 1.5px solid $dark;
+	border-radius: 4px;
+
+	&:hover {
+		background-color: $light;
+	}
+
+	&:active {
+		background-color: $white;
+	}
+
+	cursor: pointer;
+}
+
 .optionsContainer {
 	display: flex;
 

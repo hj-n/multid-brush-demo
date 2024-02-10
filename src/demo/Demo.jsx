@@ -17,7 +17,6 @@ const Demo = (props) => {
 
 	const exampleDatasets = {
 		"FashionMNIST-UMAP": "data/fmnist_small_umap_preprocessed.json",
-		"FashionMNIST-PCA": "data/fmnist_small_pca_preprocessed.json",
 		"Wine-PCA": "data/wine_pca_preprocessed.json",
 		"MNIST-PCA": "data/mnist_small_pca_preprocessed.json",
 	}
@@ -46,6 +45,43 @@ const Demo = (props) => {
 
 	let multidbrushing = null;
 
+	let showingOriginal = false;
+
+
+	const statusUpdateCallback = (statusArr) => {
+		// TODO
+		const brushingStatusContainer = document.getElementById("brushingStatusContainer");
+		brushingStatusContainer.innerHTML = "";
+		
+		statusArr.forEach((status) => {
+			const color = status.color;
+			const isCurrent = status.isCurrent;
+			const pointNum = status.points.length;
+			const newDiv = document.createElement("div");
+			newDiv.innerText = pointNum;
+
+			newDiv.style.backgroundColor = color;
+			newDiv.style.width = "40px";
+			newDiv.style.height = "40px";
+			newDiv.style.margin = "15px";
+			newDiv.style.marginTop = "0px";
+			newDiv.style.color = "white";
+			newDiv.style.fontSize = "20px";
+
+			// place inner text in the middle
+			newDiv.style.display = "flex";
+			newDiv.style.justifyContent = "center";
+			newDiv.style.alignItems = "center";
+
+			if (isCurrent) {
+				newDiv.style.border = "5px solid black";
+			}
+			brushingStatusContainer.appendChild(newDiv);
+		})
+	}
+
+
+
 	useEffect(() => {
 		(async () => {
 			let preprocessed;
@@ -58,8 +94,12 @@ const Demo = (props) => {
 			}
 			multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
-				pointRenderingStyle,
+				statusUpdateCallback, pointRenderingStyle
 			);
+
+			let statusArr = multidbrushing.getEntireBrushingStatus();
+			statusUpdateCallback(statusArr);
+			
 		})();
 
 		return () => {
@@ -104,20 +144,49 @@ const Demo = (props) => {
 								})}
 							</select>
 						</div>
-
+						<div className={styles.singleOptionContainer}>
+							<button className={styles.clickButton} onClick={() => {
+								multidbrushing.addNewBrush(brushingId);
+								let statusArr = multidbrushing.getEntireBrushingStatus();
+								statusUpdateCallback(statusArr);
+								if (showingOriginal) {
+									showingOriginal = false;
+									document.getElementById("originalButton").innerText = "See Original Embedding";
+								}
+							}}
+							>Add New Brush</button>
+						</div>
+						<div className={styles.singleOptionContainer}>
+							<button className={styles.clickButton} id={"originalButton"} onClick={(e) => {
+								if (!showingOriginal) {
+									multidbrushing.temporalReconstructInitialScatterplot();
+									showingOriginal = true;
+									document.getElementById("originalButton").innerText = "Back to Brushing";
+								}
+								else {
+									multidbrushing.cancelTemporalReconstruction();
+									showingOriginal = false;
+									document.getElementById("originalButton").innerText = "See Original Embedding";
+								}
+								
+							}}
+							>See Original Embedding</button>
+						</div>
 					</div>
 					<div className={styles.warningContainer}>
 						{warning !== "" && <p className={styles.warning}>{warning}</p>}
 					</div>
 					  {warning === "" && 
-							<canvas 
-								className={styles.mainCanvas} 
-								ref={canvasRef} 
-								width={width} height={height} 
-								style={{width: width, height: height}}
-							/>
+							<div className={styles.brushingContainer}>
+								<canvas 
+									className={styles.mainCanvas} 
+									ref={canvasRef} 
+									width={width} height={height} 
+									style={{width: width, height: height}}
+								/>
+								<div id="brushingStatusContainer" className={styles.brushingStatusContainer}></div>
+							</div>
 						}
-
 				</div>
 			</div>
 			
