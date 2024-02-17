@@ -22,19 +22,19 @@ const Demo = (props) => {
 	}
 
 	// for FASHION-MNIST RENDERING
-	const pointRenderingStyle = {
-		"style": "monochrome",
-		"size": CONSTANTS.POINTSIZE * 2.5,
-		"inversed": true,
-		"pixelWidth": 28,
-		"pixelHeight": 28,
-		"removeBackground": true,
-	}
-
 	// const pointRenderingStyle = {
-	// 	"style": "dot",
-	// 	"size": CONSTANTS.POINTSIZE
+	// 	"style": "monochrome",
+	// 	"size": CONSTANTS.POINTSIZE * 2.5,
+	// 	"inversed": true,
+	// 	"pixelWidth": 28,
+	// 	"pixelHeight": 28,
+	// 	"removeBackground": true,
 	// }
+
+	const pointRenderingStyle = {
+		"style": "dot",
+		"size": CONSTANTS.POINTSIZE
+	}
 
 	// const techniqueStyle = {
 	// 	"technique": "dab",
@@ -49,7 +49,6 @@ const Demo = (props) => {
 
 
 	const statusUpdateCallback = (statusArr) => {
-		// TODO
 		const brushingStatusContainer = document.getElementById("brushingStatusContainer");
 		brushingStatusContainer.innerHTML = "";
 		
@@ -146,7 +145,7 @@ const Demo = (props) => {
 						</div>
 						<div className={styles.singleOptionContainer}>
 							<button className={styles.clickButton} onClick={() => {
-								multidbrushing.addNewBrush(brushingId);
+								multidbrushing.addNewBrush();
 								let statusArr = multidbrushing.getEntireBrushingStatus();
 								statusUpdateCallback(statusArr);
 								if (showingOriginal) {
