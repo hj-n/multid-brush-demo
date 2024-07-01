@@ -22,19 +22,19 @@ const Demo = (props) => {
 	}
 
 	// for FASHION-MNIST RENDERING
-	// const pointRenderingStyle = {
-	// 	"style": "monochrome",
-	// 	"size": CONSTANTS.POINTSIZE * 2.5,
-	// 	"inversed": true,
-	// 	"pixelWidth": 28,
-	// 	"pixelHeight": 28,
-	// 	"removeBackground": true,
-	// }
-
 	const pointRenderingStyle = {
-		"style": "dot",
-		"size": CONSTANTS.POINTSIZE
+		"style": "monochrome",
+		"size": CONSTANTS.POINTSIZE * 2.5,
+		"inversed": true,
+		"pixelWidth": 28,
+		"pixelHeight": 28,
+		"removeBackground": true,
 	}
+
+	// const pointRenderingStyle = {
+	// 	"style": "dot",
+	// 	"size": CONSTANTS.POINTSIZE
+	// }
 
 	// const techniqueStyle = {
 	// 	"technique": "dab",

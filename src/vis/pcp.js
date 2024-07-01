@@ -94,6 +94,9 @@ export function updatePcp (lineG, data, brushingStatus, seedPoints) {
 	const opacityArr = new Array(data.length).fill(0.1);
 	const strokeWidthArr = new Array(data.length).fill(0.2);
 
+	console.log(seedPoints);
+
+
 	brushingStatus.forEach((status, idx) => {
 		status.points.forEach((point) => {
 			colorArr[point] = status.color;
