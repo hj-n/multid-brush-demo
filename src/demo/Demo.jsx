@@ -9,6 +9,8 @@ const Demo = (props) => {
 
 	const [exampleDataId, setExampleDataId] = useState("FashionMNIST-UMAP");
 	const [brushingId, setBrushingId] = useState("dab"); // distortion-aware brushing
+	const [showDensityId, setShowDensityId] = useState("true");
+	const [showClosenessId, setShowClosenessId] = useState("true");
 	const [warning, setWarning] = useState("");
 	const width = CONSTANTS.SIZE;
 	const height = CONSTANTS.SIZE;
@@ -21,6 +23,16 @@ const Demo = (props) => {
 		"MNIST-PCA": "data/mnist_small_pca_preprocessed.json",
 	}
 
+	const showDensityOptions = {
+		"true": "Show Density",
+		"false": "Hide Density",
+	}
+
+	const showClosenessOptions = {
+		"true": "Show Closeness",
+		"false": "Hide Closeness",
+	}
+
 	// for FASHION-MNIST RENDERING
 	const pointRenderingStyle = {
 		"style": "monochrome",
@@ -30,6 +42,7 @@ const Demo = (props) => {
 		"pixelHeight": 28,
 		"removeBackground": true,
 	}
+
 
 	// const pointRenderingStyle = {
 	// 	"style": "dot",
@@ -93,7 +106,9 @@ const Demo = (props) => {
 			}
 			multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
-				statusUpdateCallback, pointRenderingStyle
+				statusUpdateCallback, pointRenderingStyle,
+				showDensityId === "true" ? true : false,
+				showClosenessId === "true" ? true : false,
 			);
 
 			let statusArr = multidbrushing.getEntireBrushingStatus();
@@ -104,7 +119,7 @@ const Demo = (props) => {
 		return () => {
 			multidbrushing.unMount();
 		}
-	}, [exampleDataId]);
+	}, [exampleDataId, showDensityId, showClosenessId]);
 
 	// Load the data from the "data" folder in public
 
@@ -122,7 +137,6 @@ const Demo = (props) => {
 				<div className={styles.canvasContainer}>
 					<div className={styles.optionsContainer}>
 						<div className={styles.singleOptionContainer}>
-							<h3>{"Dataset: "}</h3>
 							<select className={styles.dropdown} id="exampleDatasets" name="exampleDatasets" onChange={(e) => {
 								setWarning("");
 								setExampleDataId(e.target.value);
@@ -133,13 +147,32 @@ const Demo = (props) => {
 							</select>
 						</div>
 						<div className={styles.singleOptionContainer}>
-							<h3>{"Brushing technique:"}</h3>
 							<select className={styles.dropdown} id="brushings" name="brushings" onChange={(e) => {
 								setWarning("");
 								setBrushingId(e.target.value);
 							}}>
 								{brushingsId.map((id, index) => {
 									return <option key={index} value={id}>{brushingsName[index]}</option>
+								})}
+							</select>
+						</div>
+						<div className={styles.singleOptionContainer}>
+							<select className={styles.dropdown} id="showDensity" name="showDensity" onChange={(e) => {
+								setWarning("");
+								setShowDensityId(e.target.value);
+							}}>
+								{Object.keys(showDensityOptions).map((key, index) => {
+									return <option key={index} value={key}>{showDensityOptions[key]}</option>
+								})}
+							</select>
+						</div>
+						<div className={styles.singleOptionContainer}>
+							<select className={styles.dropdown} id="showCloseness" name="showCloseness" onChange={(e) => {
+								setWarning("");
+								setShowClosenessId(e.target.value);
+							}}>
+								{Object.keys(showClosenessOptions).map((key, index) => {
+									return <option key={index} value={key}>{showClosenessOptions[key]}</option>
 								})}
 							</select>
 						</div>
