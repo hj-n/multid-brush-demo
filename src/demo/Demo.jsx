@@ -7,7 +7,7 @@ import MultiDBrushing from "multid-brush";
 
 const Demo = (props) => {
 
-	const [exampleDataId, setExampleDataId] = useState("FashionMNIST-UMAP");
+	const [exampleDataId, setExampleDataId] = useState("MNIST-PCA");
 	const [brushingId, setBrushingId] = useState("dab"); // distortion-aware brushing
 	const [showDensityId, setShowDensityId] = useState("true");
 	const [showClosenessId, setShowClosenessId] = useState("true");
@@ -18,10 +18,12 @@ const Demo = (props) => {
 	const brushingsName = brushingsId.map((id) => CONSTANTS.BRUSHINGS[id]);
 
 	const exampleDatasets = {
+		"MNIST-PCA": "data/mnist_small_pca_preprocessed.json",
 		"FashionMNIST-UMAP": "data/fmnist_small_umap_preprocessed.json",
 		"Wine-PCA": "data/wine_pca_preprocessed.json",
-		"MNIST-PCA": "data/mnist_small_pca_preprocessed.json",
 	}
+
+
 
 	const showDensityOptions = {
 		"true": "Show Density",
@@ -104,11 +106,13 @@ const Demo = (props) => {
 				console.log(error)
 				setWarning("Error while loading data!!")
 			}
+			console.log(brushingId);
 			multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
 				statusUpdateCallback, pointRenderingStyle,
 				showDensityId === "true" ? true : false,
 				showClosenessId === "true" ? true : false,
+				brushingId
 			);
 
 			let statusArr = multidbrushing.getEntireBrushingStatus();
@@ -119,7 +123,7 @@ const Demo = (props) => {
 		return () => {
 			multidbrushing.unMount();
 		}
-	}, [exampleDataId, showDensityId, showClosenessId]);
+	}, [exampleDataId, showDensityId, showClosenessId, brushingId]);
 
 	// Load the data from the "data" folder in public
 
