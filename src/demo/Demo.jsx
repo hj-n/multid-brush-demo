@@ -106,7 +106,6 @@ const Demo = (props) => {
 				console.log(error)
 				setWarning("Error while loading data!!")
 			}
-			console.log(brushingId);
 			multidbrushing = new MultiDBrushing(
 				preprocessed, canvasRef.current, CONSTANTS.SIZE, 
 				statusUpdateCallback, pointRenderingStyle,
